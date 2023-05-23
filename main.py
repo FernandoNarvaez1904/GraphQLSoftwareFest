@@ -1,7 +1,7 @@
 import strawberry
 
 from fastapi import FastAPI, HTTPException, status
-from starlette.responses import RedirectResponse
+from fastapi.responses import RedirectResponse
 from strawberry.fastapi import GraphQLRouter
 from tortoise.contrib.fastapi import register_tortoise
 
@@ -14,14 +14,14 @@ graphql_app = GraphQLRouter(schema)
 app = FastAPI()
 
 
-@app.get("/status/200")
+@app.get("/")
 async def status_200():
     return {"message": "Correct Page", "code": 200}
 
 
 @app.get("/status/300")
 async def status_300():
-    return RedirectResponse(url="/status/200", status_code=300)
+    return RedirectResponse(url="/")
 
 
 @app.get("/status/500")
